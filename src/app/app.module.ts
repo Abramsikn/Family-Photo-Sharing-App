@@ -1,19 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { RouterModule } from '@angular/router'
-
-import { MatCheckboxModule, MatInputModule, MatButtonModule, MatDividerModule,
-         MatCardModule, MatToolbarModule, MatProgressSpinnerModule, MatProgressBarModule, 
-         MatSnackBarModule, MatMenuModule, MatGridListModule} from '@angular/material';
+import { FormsModule }   from '@angular/forms';
+import { MaterialModule } from './material.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
+
 import { FooterComponent } from './template/footer/footer.component';
 import { HomeComponent } from './template/pages/home/home.component';
 import { SignupComponent } from './template/pages/signup/signup.component';
 import { SigninComponent } from './template/pages/signin/signin.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,28 +26,10 @@ import { SigninComponent } from './template/pages/signin/signin.component';
   imports: [
     MDBBootstrapModule.forRoot(),
     BrowserModule,
-    RouterModule.forRoot([
-      {
-        path: '', 
-        component: HomeComponent 
-      },
-      { 
-        path: 'home', 
-        component: HomeComponent
-      },
-      { 
-        path: 'signup', 
-        component: SignupComponent
-      },
-      { 
-        path: 'signin', 
-        component: SigninComponent
-      },
-      /*{ 
-        path: '**', 
-        component: NotFoundComponent
-      }, */
-    ])
+    FormsModule,
+    AppRoutingModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
