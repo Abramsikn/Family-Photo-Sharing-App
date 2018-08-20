@@ -1,16 +1,20 @@
 <mat-card class="card">
     <form class="example-form" #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
   
-      <h2>Log In To Your Account</h2>
+      <h2>LOGGING IN</h2>
       <mat-divider></mat-divider>
       <br>
       <br>
-      <mat-form-field class="example-full-width">
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Enter Username</mat-label>
         <input matInput type="email" placeholder="Username" required
         ngModel name="email">
       </mat-form-field>
   
-      <mat-form-field class="example-full-width">
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Enter Password</mat-label>
         <input matInput type="password" placeholder="Password" required
         ngModel name="password">
       </mat-form-field>

@@ -1,32 +1,37 @@
 <mat-card>
     <form class="example-form" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
   
-      <h2>Register New Account</h2>
+      <h2>REGISTRATION</h2>
       <mat-divider></mat-divider>
   
       <br>
-      <br>
-  
-      <mat-form-field class="example-full-width">
-        <input matInput type="text" placeholder="First name" 
-        [(ngModel)]="profile.FirstName" name="FirstName">
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Enter Your Firstname</mat-label>
+        <input matInput placeholder="Firstname" required>
       </mat-form-field>
-  
-      <mat-form-field class="example-full-width">
-        <input matInput type="text" placeholder="Last name"
-        [(ngModel)]="profile.LastName" name="LastName">
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Enter Your Lastname</mat-label>
+        <input matInput placeholder="Lastname" required>
       </mat-form-field>
-  
-      <mat-form-field class="example-full-width">
-        <input matInput type="email" placeholder="Email"
-        [(ngModel)]="profile.Email" name="Email">
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Enter Your Contact Number</mat-label>
+        <input matInput placeholder="Contact Number">
       </mat-form-field>
-  
-      <mat-form-field class="example-full-width">
-        <input matInput type="password" placeholder="Password"
-        [(ngModel)]="profile.Password" name="Password">
+
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Enter Your Email</mat-label>
+        <input matInput placeholder="Email" required>
       </mat-form-field>
-  
+
+      <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Enter your password</mat-label>
+        <input matInput placeholder="Enter your password" required [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+     
       <button class="btn" mat-button type="submit">Submit</button>
     </form>
   </mat-card>
