@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule }   from '@angular/forms';
-import { MaterialModule } from '././helper/material/material.module';
-import { AppRoutingModule } from '././helper/routing/app-routing.module';
+import { MaterialModule } from '././shared/material/material.module';
+import { AppRoutingModule } from '././shared/routing/app-routing.module';
 import { AlbumsModule } from './albums/albums.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
@@ -14,8 +15,6 @@ import { SignupComponent } from './template/pages/signup/signup.component';
 import { SigninComponent } from './template/pages/signin/signin.component';
 import { NotFoundComponent } from './template/pages/error/notfound';
 import { ProfileComponent } from './template/pages/profile/profile.component';
-import { SharedModule } from './shared/shared.module';
-
 
 @NgModule({
   declarations: [

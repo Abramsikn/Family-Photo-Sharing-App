@@ -17,7 +17,7 @@ import { MatCheckboxModule,
 @NgModule({
     imports: [
         MatCheckboxModule,
-        MatInputModule, 
+        MatInputModule,
         MatButtonModule, 
         MatDividerModule,
         MatCardModule, 
