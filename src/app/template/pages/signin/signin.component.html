@@ -18,14 +18,20 @@
         <input matInput type="password" placeholder="Password" required
         ngModel name="password">
       </mat-form-field>
-  
+
       <button [disabled]="!signInForm.valid"
          class="btn" mat-button type="submit"
          *ngIf="!loginProgress">Login</button>
-  
+      
       <br>
       <br>
+
+      <div class="button-row">
+        <button mat-button color="warn" routerLink="/signup">Not Registered? Click here!</button>
+      </div>
+
       <mat-progress-bar *ngIf="loginProgress" mode="indeterminate"></mat-progress-bar>
+      <!-- Progress bar needs to be chnaged-->
   
     </form>
   </mat-card>
