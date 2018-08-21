@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 
-import { HomeComponent } from '../../shared/home/home.component';
+import { HomeComponent } from '../../template/pages/home/home.component';
 import { SignupComponent } from '../../template/pages/signup/signup.component';
 import { SigninComponent } from '../../template/pages/signin/signin.component';
 import { AlbumsListComponent } from '../../albums/albums-list/albums-list.component';

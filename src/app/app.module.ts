@@ -10,7 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './shared/home/home.component';
+import { HomeComponent } from './template/pages/home/home.component';
 import { SignupComponent } from './template/pages/signup/signup.component';
 import { SigninComponent } from './template/pages/signin/signin.component';
 import { NotFoundComponent } from './template/pages/error/notfound';
