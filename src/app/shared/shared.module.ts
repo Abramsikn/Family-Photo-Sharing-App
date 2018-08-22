@@ -4,6 +4,7 @@ import { MaterialModule } from '../shared/material/material.module';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MatIconModule } from '@angular/material';
+import { MarginIconComponent } from './margin-icon/margin-icon.component';
 
 @NgModule({
   imports: [
@@ -12,10 +13,12 @@ import { MatIconModule } from '@angular/material';
     MatIconModule
   ], 
   declarations: [ 
-    ToolbarComponent
+    ToolbarComponent,
+    MarginIconComponent
   ],
   exports: [
-    ToolbarComponent
+    ToolbarComponent,
+    MarginIconComponent
   ],
 })
 export class SharedModule { }
