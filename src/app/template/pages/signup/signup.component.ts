@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router  } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -12,6 +11,9 @@ export class SignupComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit(form : NgForm) { 
   }
 
 }
