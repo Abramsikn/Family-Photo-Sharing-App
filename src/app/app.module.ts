@@ -1,27 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { FormsModule }   from '@angular/forms';
 import { MaterialModule } from '././shared/material/material.module';
 import { AppRoutingModule } from '././shared/routing/app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumsModule } from './albums/albums.module';
 import { SharedModule } from './shared/shared.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './template/pages/home/home.component';
-import { SignupComponent } from './template/pages/signup/signup.component';
-import { SigninComponent } from './template/pages/signin/signin.component';
 import { NotFoundComponent } from './template/pages/error/notfound';
+import { HomeComponent } from './template/pages/home/home.component';
 import { ProfileComponent } from './template/pages/profile/profile.component';
+import { SignupComponent } from './template/pages/signup/signup.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
-    AppComponent,   
+    AppComponent,
     HomeComponent,
     SignupComponent,
-    SigninComponent,
     NotFoundComponent,
     ProfileComponent
   ],
@@ -34,7 +35,9 @@ import { ProfileComponent } from './template/pages/profile/profile.component';
     BrowserAnimationsModule,
     AlbumsModule, 
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AuthModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
