@@ -1,10 +1,17 @@
 <mat-toolbar class="special">
-    <mat-toolbar-row>
+    <mat-toolbar-row fxLayout="row">
         <button mat-mini-fab 
-                color="accent" 
+                color="accent"
                 (click)="toggleNav()">
             <mat-icon>list</mat-icon>
         </button>
-        <span style="margin-left: 10px">Photo Sharing Application</span>
+        <span fxFlex fxFlexOffset="10px">Family Photo Sharing Application</span>
+        <button mat-mini-fab 
+                color="primary"
+                (click)="signout()"
+                *ngIf="isSignedIn"> <!--   -->
+            <mat-icon>exit_to_app</mat-icon>
+        </button>
     </mat-toolbar-row>
 </mat-toolbar>
+ 

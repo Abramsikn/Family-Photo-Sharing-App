@@ -23,7 +23,8 @@ const routes: Routes = [
         AuthModule, 
         RouterModule.forRoot(routes, {enableTracing: false, preloadingStrategy: PreloadAllModules
     })
-],
+    ],
+    declarations: [ ],
     exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

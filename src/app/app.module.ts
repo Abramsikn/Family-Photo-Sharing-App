@@ -1,3 +1,4 @@
+import { AuthService } from './auth/shared/auth.service';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
@@ -40,7 +41,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

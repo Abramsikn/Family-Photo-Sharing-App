@@ -1,3 +1,18 @@
+<br>
+<form (ngSubmit)="signin()" [formGroup]="signinForm" novalidate>
+  <mat-form-field>
+    <input matInput placeholder="E-mail" formControlName="email"> <!-- formControlName - to bind -->
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" formControlName="password">
+  </mat-form-field>
+  <button mat-fab 
+          color="accent"
+          type="submit">
+    Sign In
+  </button>
+</form>
+
 <!--
 <mat-card class="card">
   <form class="example-form" #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
