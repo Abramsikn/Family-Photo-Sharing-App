@@ -7,6 +7,7 @@ import { SigninComponent } from '../../auth/signin/signin.component';
 import { AlbumsListComponent } from '../../albums/albums-list/albums-list.component';
 import { NotFoundComponent } from '../../template/pages/error/notfound';
 import { AuthModule } from '../../auth/auth.module';
+import { AuthGuard } from '../../auth/shared/auth-guard.service';
 
 const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -14,7 +15,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent},
       { path: 'signup', component: SignupComponent },
       { path: 'signin', component: SigninComponent },
-      { path: 'albums', component: AlbumsListComponent },
+      { path: 'albums', component: AlbumsListComponent, canActivate: [AuthGuard] },
       { path: '**', component: NotFoundComponent }
 ];
  

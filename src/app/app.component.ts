@@ -1,4 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { AuthService } from './auth/shared/auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { Subscription } from 'rxjs';
 
@@ -7,12 +8,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy { 
+export class AppComponent implements OnInit, OnDestroy { 
   navBarOpen = true;
   mode = 'side';
 
   watcher: Subscription;
-  constructor(media: ObservableMedia) {
+  constructor(media: ObservableMedia,
+              private authService: AuthService) {
     this.watcher = media.subscribe((change: MediaChange) => {
       if (change.mqAlias === 'xs') {
         this.loadMobileContent();
@@ -21,6 +23,12 @@ export class AppComponent implements OnDestroy {
       }
     });
   } 
+  
+  ngOnInit() {
+     this.authService.isAuthenticated().subscribe(isSignedIn => {
+       this.navBarOpen = isSignedIn;
+     })
+  }
 
   ngOnDestroy() {
     this.watcher.unsubscribe();

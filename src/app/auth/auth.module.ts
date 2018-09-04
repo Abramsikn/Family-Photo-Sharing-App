@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -7,7 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { SigninComponent } from '../auth/signin/signin.component';
-import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -16,9 +17,9 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/ma
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatButtonModule
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule
   ],
   declarations: [ SigninComponent ],
-  providers: [ AuthService ]
+  providers: [ AuthService, AuthGuard ]
 })
 export class AuthModule { }
