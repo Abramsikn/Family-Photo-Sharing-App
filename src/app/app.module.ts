@@ -16,14 +16,12 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './template/pages/error/notfound';
 import { HomeComponent } from './template/pages/home/home.component';
 import { ProfileComponent } from './template/pages/profile/profile.component';
-import { SignupComponent } from './template/pages/signup/signup.component';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SignupComponent,
     NotFoundComponent,
     ProfileComponent
   ],

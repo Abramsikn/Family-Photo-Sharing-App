@@ -11,29 +11,22 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
-
-  /* Injecting Service */
-  constructor(private authService: AuthService,
+  
+  constructor(private authService: AuthService,           /* Injecting Services */
               private fb: FormBuilder,
               private snackbar: MatSnackBar,
               private router:Router) { 
-    this.signinForm = fb.group({ /* A group is a way of desccribing the ibput fields */
+    this.signinForm = fb.group({                          /* A group is a way of desccribing the ibput fields */
       email: '',
       password: '' 
     });
   }
 
   ngOnInit() {
-    /* Promise will execute the login as soon as  function at the service is called */
-
-    /* this.authService.signin( 'testing2@yahoo.com', '123456' )
-      .then( () => console.log( 'Signed In'))
-      .catch( error => console.log(error)); */
-
-      this.authService.isAuthenticated()
-        .subscribe(authState => console.log(authState),
-                    error => console.log(error),
-                      () => console.log('Complete'));
+    this.authService.isAuthenticated()
+      .subscribe(authState => console.log(authState),
+                 error => console.log(error),
+                 () => console.log('Complete'));
   }
 
   signin() {
@@ -41,7 +34,7 @@ export class SigninComponent implements OnInit {
     this.authService.signin(signinModel.email, signinModel.password)
       .then( () => {
         this.router.navigateByUrl('albums')
-        .then( () => this.snackbar.open('You have successfully logged in', '', {
+        .then( () => this.snackbar.open('You have successfully logged in','', {
           duration: 1500
         }));
       })

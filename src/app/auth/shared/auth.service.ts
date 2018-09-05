@@ -9,10 +9,22 @@ export class AuthService {
   constructor(private fireAuth: AngularFireAuth) {
   }
 
+  /* Sign Up */
+  signup(email: string, password: string) : Promise<any> {
+    return this.fireAuth.auth
+      .createUserAndRetrieveDataWithEmailAndPassword(
+        email,
+        password
+      ); 
+  }
+  
+  /* Sign In */
   signin(email: string, password: string) : Promise<any> {
-    return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password); 
+    return this.fireAuth.auth
+      .signInAndRetrieveDataWithEmailAndPassword(email, password); 
   }
 
+  /* Sign Out */
   signout(): Promise<any> {
     return this.fireAuth.auth.signOut();
   }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 
 import { HomeComponent } from '../../template/pages/home/home.component';
-import { SignupComponent } from '../../template/pages/signup/signup.component';
+import { SignupComponent } from '../../auth/signup/signup.component';
 import { SigninComponent } from '../../auth/signin/signin.component';
 import { AlbumsListComponent } from '../../albums/albums-list/albums-list.component';
 import { NotFoundComponent } from '../../template/pages/error/notfound';
