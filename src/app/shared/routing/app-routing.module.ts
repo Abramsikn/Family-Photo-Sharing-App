@@ -1,3 +1,4 @@
+import { CheckLoggedInGuard } from './../../auth/shared/check-logged-in.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 
@@ -13,8 +14,8 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: '/home' },
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent},
-      { path: 'signup', component: SignupComponent },
-      { path: 'signin', component: SigninComponent },
+      { path: 'signup', component: SignupComponent, canActivate: [CheckLoggedInGuard] },
+      { path: 'signin', component: SigninComponent, canActivate: [CheckLoggedInGuard] },
       { path: 'albums', component: AlbumsListComponent, canActivate: [AuthGuard] },
       { path: '**', component: NotFoundComponent }
 ];

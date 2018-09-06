@@ -8,8 +8,9 @@ import { MaterialModule } from '../shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { SigninComponent } from '../auth/signin/signin.component';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatDividerModule } from '@angular/material';
 import { SignupComponent } from './signup/signup.component';
+import { CheckLoggedInGuard } from './shared/check-logged-in.guard';
 
 @NgModule({
   imports: [
@@ -18,9 +19,9 @@ import { SignupComponent } from './signup/signup.component';
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule
+    MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatDividerModule
   ],
   declarations: [ SigninComponent, SignupComponent ],
-  providers: [ AuthService, AuthGuard ]
+  providers: [ AuthService, AuthGuard, CheckLoggedInGuard ]
 })
 export class AuthModule { }

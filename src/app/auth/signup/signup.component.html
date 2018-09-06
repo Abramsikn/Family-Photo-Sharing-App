@@ -4,7 +4,6 @@
     <mat-card-header>
       <mat-card-title>Signup</mat-card-title>
     </mat-card-header>
-  
     <mat-card-content>
       <form (ngSubmit)="signup()" 
             [formGroup]="signupForm" 
@@ -15,15 +14,13 @@
           <input matInput 
                 placeholder="E-mail" 
                 formControlName="email">
-
-          <mat-error *ngIf="signupForm.get('email').hasError('required')">
-            email is required
+          <!--Error checking-->
+          <mat-error *ngIf="formError('email', 'required')"> <!--ts file-->
+            Email <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="signupForm.get('email').hasError('email') &&
-                            !signupForm.get('email').hasError('required')">
-            email is invalid
+          <mat-error *ngIf="formError('email', 'email', ['required'])"> <!--Not working-->
+            Please enter a valid <strong>email</strong>
           </mat-error>
-          
         </mat-form-field>
 
         <mat-form-field fxFlex>
@@ -31,6 +28,13 @@
                  placeholder="Password"
                  type="password" 
                  formControlName="password">
+          <!--Error checking-->
+          <mat-error *ngIf="formError('password', 'required')"> <!--ts file-->
+            Password <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="formError('password', 'minLength')"> <!--ts file-->
+            Password need to at least <strong>8 characters</strong> long
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex>
@@ -38,11 +42,19 @@
                  placeholder="Repeat Password"
                  type="password" 
                  formControlName="repeatPassword">
+          <!--Error checking-->
+          <mat-error *ngIf="formError('repeatPassword', 'required')"> <!--ts file-->
+            Password <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="formError('repeatPassword', 'no-match', ['required'])"> <!--ts file-->
+            Password does not <strong>match</strong>
+          </mat-error>
         </mat-form-field>
 
-        <button mat-button 
+        <button mat-button
                 color="primary"
-                type="submit">
+                type="submit"
+                [disabled]="signupForm.invalid">
           Sign Up
         </button>
       </form>
