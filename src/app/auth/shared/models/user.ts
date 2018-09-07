@@ -1,7 +1,7 @@
 export class User {
     userId: string;
     email: string;
-    password?: string;
-    gender?: boolean;
+    password?: string;  //Optional
+    gender?: boolean;   //Optional
     dateOfBirth: Date; 
 }

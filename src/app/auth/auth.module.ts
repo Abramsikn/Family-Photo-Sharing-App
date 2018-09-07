@@ -11,6 +11,7 @@ import { SigninComponent } from '../auth/signin/signin.component';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatDividerModule } from '@angular/material';
 import { SignupComponent } from './signup/signup.component';
 import { CheckLoggedInGuard } from './shared/check-logged-in.guard';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -19,7 +20,13 @@ import { CheckLoggedInGuard } from './shared/check-logged-in.guard';
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatSnackBarModule, MatDividerModule
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatButtonModule,
+    MatCardModule, 
+    MatSnackBarModule, 
+    MatDividerModule,
+    RouterModule
   ],
   declarations: [ SigninComponent, SignupComponent ],
   providers: [ AuthService, AuthGuard, CheckLoggedInGuard ]

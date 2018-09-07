@@ -11,13 +11,13 @@ import { AuthModule } from '../../auth/auth.module';
 import { AuthGuard } from '../../auth/shared/auth-guard.service';
 
 const routes: Routes = [
-      { path: '', pathMatch: 'full', redirectTo: '/home' },
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent},
       { path: 'signup', component: SignupComponent, canActivate: [CheckLoggedInGuard] },
       { path: 'signin', component: SigninComponent, canActivate: [CheckLoggedInGuard] },
       { path: 'albums', component: AlbumsListComponent, canActivate: [AuthGuard] },
-      { path: '**', component: NotFoundComponent }
+      { path: '**', component: NotFoundComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full', }
 ];
  
 @NgModule({

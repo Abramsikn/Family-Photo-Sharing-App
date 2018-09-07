@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    const signUpModel = this.signupForm.value as User;
+    const signUpModel = this.signupForm.value as User; /* as keyword to convert js object in to a user */
     this.authService.signup(signUpModel)
       .then( user => {
         this.router.navigateByUrl( 'albums')
@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
       });
   }
   /* For Error? */
-  formError(fc: string, errCode: string, preRequired: string[]): boolean {
+  formError(fc: string, errCode: string, preRequired?: string[]): boolean {
     if(preRequired && preRequired.length > 0) {
       for (let i = 0; i < preRequired.length; ++i) {
         if (this.signupForm.get(fc).hasError(preRequired[i])) { /* if has error in position */
