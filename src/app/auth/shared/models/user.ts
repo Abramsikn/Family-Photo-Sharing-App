@@ -1,7 +1,11 @@
 export class User {
-    userId: string;
+    userid: string;
     email: string;
-    password?: string;  //Optional
-    gender?: boolean;   //Optional
-    dateOfBirth: Date; 
+    password?: string;
+    username?: string;
+    firstName?: string;
+    middleName?: string;
+    lastName?: string;
 }
+
+/* ? - means optional */

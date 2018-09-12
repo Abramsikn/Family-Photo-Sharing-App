@@ -1,8 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center">
     <mat-card fxFlex="80">
       <mat-card-header>
-        <mat-card-title>Username Here</mat-card-title>
-        <mat-card-subtitle>Email Here</mat-card-subtitle>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/IMG_20180726_201435.jpg?alt=media&token=a4e53c90-cc88-43d5-80c2-1980f5be1cb6" alt="Me">
+        <mat-card-title> {{user.username}} </mat-card-title>
+        <mat-card-subtitle> {{user.email}} </mat-card-subtitle>
       </mat-card-header>
   
       <mat-card-content>
@@ -49,7 +50,7 @@
               <mat-icon>lock</mat-icon>
             </button>
             <p fxFlex
-               fxFlexOffset="10px">Change Password</p>
+               fxFlexOffset="20px">Change Password</p>
             <button mat-raised-button
                     color="primary"
                     type="submit"

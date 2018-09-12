@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
-import { User } from './models/user';
+import { User } from 'src/app/auth/shared/models/user';
 
 @Injectable()
 export class AuthService {
@@ -36,6 +36,13 @@ export class AuthService {
     return this.fireAuth.authState
       .map(authState => {
         return authState !== null;
+      });
+  }
+
+  getUser(): Observable<User> {
+    return this.fireAuth.authState
+      .map(authState => {
+        return authState as User; 
       });
   }
 }

@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
         });
       });
   }
-  /* For Error? */
+  /* For Error */
   formError(fc: string, errCode: string, preRequired?: string[]): boolean {
     if(preRequired && preRequired.length > 0) {
       for (let i = 0; i < preRequired.length; ++i) {
