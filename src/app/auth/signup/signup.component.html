@@ -1,9 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="center">
-    <mat-card fxFlex="50">
+  <mat-card fxFlex="50">
 
     <mat-card-header>
       <mat-card-title>Signup</mat-card-title>
     </mat-card-header>
+
     <mat-card-content>
       <form (ngSubmit)="signup()" 
             [formGroup]="signupForm" 
@@ -12,13 +13,14 @@
 
         <mat-form-field fxFlex>
           <input matInput 
-                placeholder="E-mail" 
-                formControlName="email">
+                 placeholder="E-mail" 
+                 formControlName="email">
+
           <!--Error checking-->
           <mat-error *ngIf="formError('email', 'required')"> <!--ts file-->
             Email <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="formError('email', 'email', ['required'])"> <!--Not working-->
+          <mat-error *ngIf="formError('email', 'email', ['required'])" <!--Not working-->
             Please enter a valid <strong>email</strong>
           </mat-error>
         </mat-form-field>
@@ -28,6 +30,7 @@
                  placeholder="Password"
                  type="password" 
                  formControlName="password">
+                 
           <!--Error checking-->
           <mat-error *ngIf="formError('password', 'required')"> <!--ts file-->
             Password <strong>required</strong>
@@ -42,6 +45,7 @@
                  placeholder="Repeat Password"
                  type="password" 
                  formControlName="repeatPassword">
+
           <!--Error checking-->
           <mat-error *ngIf="formError('repeatPassword', 'required')"> <!--ts file-->
             Password <strong>required</strong>
