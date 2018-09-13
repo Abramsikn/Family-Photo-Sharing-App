@@ -15,7 +15,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './template/pages/error/notfound';
 import { HomeComponent } from './template/pages/home/home.component';
-import { ProfileComponent } from './template/pages/profile/profile.component';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { AuthModule } from './auth/auth.module';
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    ProfileComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

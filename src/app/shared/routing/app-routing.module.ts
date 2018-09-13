@@ -6,10 +6,11 @@ import { HomeComponent } from '../../template/pages/home/home.component';
 import { SignupComponent } from '../../auth/signup/signup.component';
 import { SigninComponent } from '../../auth/signin/signin.component';
 import { AlbumsListComponent } from '../../albums/albums-list/albums-list.component';
-import { UserProfileComponent } from '../../auth/user-profile/user-profile.component';
+import { UserProfileComponent } from '../../user/user-profile/user-profile.component';
 import { NotFoundComponent } from '../../template/pages/error/notfound';
 import { AuthModule } from '../../auth/auth.module';
 import { AuthGuard } from '../../auth/shared/auth-guard.service';
+import { UserModule } from '../../user/user.module';
 
 const routes: Routes = [
       { path: '', component: HomeComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
 @NgModule({
     imports: [
         AuthModule, 
-        RouterModule.forRoot(routes, {enableTracing: false, preloadingStrategy: PreloadAllModules
+        UserModule,
+        RouterModule.forRoot(routes, {enableTracing: false, preloadingStrategy: PreloadAllModules,
     })
     ],
     declarations: [ ],

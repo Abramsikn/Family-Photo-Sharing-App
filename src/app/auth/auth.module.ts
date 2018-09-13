@@ -12,7 +12,7 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, Mat
 import { SignupComponent } from './signup/signup.component';
 import { CheckLoggedInGuard } from './shared/check-logged-in.guard';
 import { RouterModule } from '@angular/router';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserModule } from '../user/user.module';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatDividerModule,
     RouterModule
   ],
-  declarations: [ SigninComponent, SignupComponent, UserProfileComponent ],
+  declarations: [ SigninComponent, SignupComponent ],
   providers: [ AuthService, AuthGuard, CheckLoggedInGuard ]
 })
 export class AuthModule { }
