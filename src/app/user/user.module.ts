@@ -12,6 +12,7 @@ import { MatFormFieldModule,
          MatDividerModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatButtonModule,
     MatCardModule, 
     MatSnackBarModule, 
-    MatDividerModule
+    MatDividerModule,
+    AngularFirestoreModule
   ],
   declarations: [
     UserProfileComponent

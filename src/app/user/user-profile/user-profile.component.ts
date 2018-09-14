@@ -23,11 +23,18 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() { 
-    this.userService.getUser()
-      .subscribe( user => this.user = user);
+    this.userService.getUser() /* get the authenticated user */
+      .subscribe( user => this.user = user); /* paste the user on the local user */
   } 
 
-  save() { }
+  /* Updating user profile */
+  save() { 
+    const model = this.profileForm.value as User; /* Getting the user info from the form */
+    model.uid = this.user.uid;  /* get the unique identifier from the actual user we have locally */
+    this.userService.updateUser(model)
+      .then( () => console.log('saved')) /* => error notation */
+      .catch( err => console.log('error', err));
+  }
   
   /* For Error */
   formError(fc: string, errCode: string, preRequired?: string[]): boolean {

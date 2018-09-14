@@ -4,7 +4,7 @@ import { AuthService } from '../shared/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { passwordMatch } from '../shared/password.validator';
-import { User } from '../shared/models/user';
+import { User } from '../../user/shared/models/user';
 
 @Component({
   selector: 'app-signup',
