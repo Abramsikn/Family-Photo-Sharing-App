@@ -27,7 +27,8 @@ import { UserModule } from '../user/user.module';
     MatCardModule, 
     MatSnackBarModule, 
     MatDividerModule,
-    RouterModule
+    RouterModule,
+    UserModule
   ],
   declarations: [ SigninComponent, SignupComponent ],
   providers: [ AuthService, AuthGuard, CheckLoggedInGuard ]

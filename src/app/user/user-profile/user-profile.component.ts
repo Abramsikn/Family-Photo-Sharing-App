@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
   save() { 
     const model = this.profileForm.value as User; /* Getting the user info from the form */
     model.uid = this.user.uid;  /* get the unique identifier from the actual user we have locally */
-    this.userService.updateUser(model)
+    this.userService.update(model)
       .then( () => console.log('saved')) /* => error notation */
       .catch( err => console.log('error', err));
   }

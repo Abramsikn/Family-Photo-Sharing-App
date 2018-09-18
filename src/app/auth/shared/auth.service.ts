@@ -37,7 +37,8 @@ export class AuthService {
       .map(authState => {
         return authState !== null;
       });
-  } 
+  }
+  
   /* Getting the staff from the Authenticated user */
   getAuthUser(): Observable<User> {
     return this.fireAuth.authState

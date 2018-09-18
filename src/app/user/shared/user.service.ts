@@ -4,9 +4,7 @@ import { AuthService } from '../../auth/shared/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
 
   constructor(private authService: AuthService,
@@ -19,7 +17,7 @@ export class UserService {
 
   /* pass the user with all the information that we wanna store under the logged in user */
   /* user - specifies the uid */
-  updateUser(user: User): Promise<any> {
+  update(user: User): Promise<any> {
     return this.angularFs.doc( 'users/' + user.uid).set(user);
   }
   /*

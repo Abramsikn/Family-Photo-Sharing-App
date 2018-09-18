@@ -5,19 +5,11 @@
         <mat-card-title>{{user.username}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>
-  
       <mat-card-content>
-        <form (ngSubmit)="save()" 
-              [formGroup]="profileForm" 
-              novalidate 
-              fxLayout="column">
-          
+        <form (ngSubmit)="save()" [formGroup]="profileForm" novalidate fxLayout="column">
           <mat-form-field fxFlex>
-            <input matInput 
-                   placeholder="Username" 
-                   formControlName="username">
-        
-            <!--Erro Checking-->
+            <input matInput placeholder="Username" formControlName="username">
+            <!--Error Checking-->
             <mat-error *ngIf="formError('username', 'required')">
               Username is <strong>required</strong>
             </mat-error>
@@ -25,25 +17,15 @@
               Username needs to be at least <strong>5 characters</strong>
             </mat-error>
           </mat-form-field>
-
           <mat-form-field fxFlex>
-            <input matInput 
-                   placeholder="First Name" 
-                   formControlName="firstName">
+            <input matInput placeholder="First Name" formControlName="firstName">
           </mat-form-field>
-
           <mat-form-field fxFlex>
-            <input matInput 
-                   placeholder="Middle Name" 
-                   formControlName="middleName">
+            <input matInput placeholder="Middle Name" formControlName="middleName">
           </mat-form-field>
-
-            <mat-form-field fxFlex>
-              <input matInput 
-                     placeholder="Last Name" 
-                     formControlName="lastName">
-            </mat-form-field>
-  
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Last Name" formControlName="lastName">
+          </mat-form-field>
           <div fxLayout="row" fxLayoutAlign="stretch">
             <button mat-mini-fab
                     color="warn">
