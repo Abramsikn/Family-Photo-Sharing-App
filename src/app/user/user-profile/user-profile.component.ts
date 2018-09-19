@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../user/shared/user.service';
 import { User } from '../../user/shared/models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
   profileForm: FormGroup;
-  user: User; 
+  user: User;
+  userSubscribe: Subscription;
 
   constructor(private userService: UserService,
               private fb: FormBuilder) {
@@ -21,11 +23,21 @@ export class UserProfileComponent implements OnInit {
       lastName: ''
     });
   }
-
+  
+  /* Save subscription after listening on userSubscription */
   ngOnInit() { 
-    this.userService.getUser() /* get the authenticated user */
-      .subscribe( user => this.user = user); /* paste the user on the local user */
+    this.userSubscribe = this.userService.getUser() /* get the authenticated user */
+      .subscribe( user => {
+        this.user = user; /* paste the user on the local user */
+        this.profileForm.patchValue(user); /* After getting the user we wanna populate the information in the profile form */
+        console.log(user);
+      });
   } 
+
+  /* When I am done listening i wanna stop listening until i go back to that component  */
+  ngOnDestroy(){
+    this.userSubscribe.unsubscribe();
+  }
 
   /* Updating user profile */
   save() { 

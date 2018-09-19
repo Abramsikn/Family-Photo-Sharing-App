@@ -3,6 +3,8 @@ import { User } from '../../user/shared/models/user';
 import { AuthService } from '../../auth/shared/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/first';
 
 @Injectable()
 export class UserService {
@@ -12,7 +14,21 @@ export class UserService {
   
   /* Getting the staff from the Authenticated user */
   getUser(): Observable<User> {
-    return this.authService.getAuthUser();
+    // 1. Get the AuthUser
+    // Get the DbUser - 'SwitchMap' combine the two methods and wait for each other before retirning anything
+    // Merge the above 2 together and return it as one object - 'Map' to merge the
+    // Read the code !!!
+    
+    /* first() - Get the information ones the shut down the connection */
+    return this.authService.getAuthUser().first() //Listening for an authUser (asyncronously - wait for the response)
+      .switchMap(authUser => {  // When i'm coming back I wanna executu another asyncronously call which is an authUser
+        return this.angularFs.doc<User>('users/' + authUser.uid).valueChanges().first() //Now that authUser i'm going to use him to call another asyncronous call
+          .map(dbUser => {  //When async call is done, map data
+            dbUser.uid = authUser.uid /* Map them together */
+            dbUser.email = authUser.email
+            return dbUser;  //When everything is done I return the observable of the type user
+          })
+      });
   }
 
   /* pass the user with all the information that we wanna store under the logged in user */
