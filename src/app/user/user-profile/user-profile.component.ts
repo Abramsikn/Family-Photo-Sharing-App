@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       lastName: ''
     });
   }
-  
+
   /* Save subscription after listening on userSubscription */
   ngOnInit() { 
     this.userSubscribe = this.userService.getUser() /* get the authenticated user */
@@ -32,11 +32,16 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         this.profileForm.patchValue(user); /* After getting the user we wanna populate the information in the profile form */
         console.log(user);
       });
-  } 
+  }
 
+  /* It's crutial to have unsubscribe in you app so that you cannot have huge data */
   /* When I am done listening i wanna stop listening until i go back to that component  */
   ngOnDestroy(){
     this.userSubscribe.unsubscribe();
+  }
+
+  hovering(event) {
+    console.log('In profile component', event)
   }
 
   /* Updating user profile */
@@ -48,6 +53,14 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       .catch( err => console.log('error', err));
   }
   
+  unchanged(): boolean {  
+    const model = this.profileForm.value as User;  
+    return model.username === this.user.username &&
+        model.firstName === this.user.firstName &&
+        model.middleName === this.user.middleName &&
+        model.lastName === this.user.lastName;
+  }
+
   /* For Error */
   formError(fc: string, errCode: string, preRequired?: string[]): boolean {
     if(preRequired && preRequired.length > 0) {

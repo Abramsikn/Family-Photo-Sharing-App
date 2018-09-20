@@ -3,12 +3,12 @@ import { User } from '../../user/shared/models/user';
 import { AuthService } from '../../auth/shared/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/first';
 
 @Injectable()
 export class UserService {
-
   constructor(private authService: AuthService,
               private angularFs: AngularFirestore) { }
   
@@ -18,15 +18,20 @@ export class UserService {
     // Get the DbUser - 'SwitchMap' combine the two methods and wait for each other before retirning anything
     // Merge the above 2 together and return it as one object - 'Map' to merge the
     // Read the code !!!
-    
-    /* first() - Get the information ones the shut down the connection */
-    return this.authService.getAuthUser().first() //Listening for an authUser (asyncronously - wait for the response)
+    return this.authService.getAuthUser() //Listening for an authUser (asyncronously - wait for the response)
       .switchMap(authUser => {  // When i'm coming back I wanna executu another asyncronously call which is an authUser
-        return this.angularFs.doc<User>('users/' + authUser.uid).valueChanges().first() //Now that authUser i'm going to use him to call another asyncronous call
+        if(!authUser) {
+          return new EmptyObservable();
+        }
+        return this.angularFs.doc<User>('users/' + authUser.uid).valueChanges() //Now that authUser i'm going to use him to call another asyncronous call
           .map(dbUser => {  //When async call is done, map data
-            dbUser.uid = authUser.uid /* Map them together */
-            dbUser.email = authUser.email
-            return dbUser;  //When everything is done I return the observable of the type user
+            if (dbUser) { /* Map them together */
+              authUser.username = dbUser.username;
+              authUser.firstName = dbUser.firstName;
+              authUser.middleName = dbUser.middleName;
+              authUser.lastName = dbUser.lastName;
+            }
+            return authUser;  //When everything is done I return the observable of the type user
           })
       });
   }

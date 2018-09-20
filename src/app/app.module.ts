@@ -21,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

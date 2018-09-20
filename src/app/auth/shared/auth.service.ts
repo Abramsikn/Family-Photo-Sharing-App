@@ -38,11 +38,14 @@ export class AuthService {
         return authState !== null;
       });
   }
-  
+
   /* Getting the staff from the Authenticated user */
   getAuthUser(): Observable<User> {
     return this.fireAuth.authState
       .map(authState => {
+        if(!authState) { //Avoiding having null reference exception
+          return null;
+        }
         return {email: authState.email, uid: authState.uid };
       });
   }

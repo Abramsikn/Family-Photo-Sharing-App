@@ -1,7 +1,11 @@
 <div fxLayout="row" fxLayoutAlign="center" *ngIf="user"> <!--It detrmines to show when the user is there-->
     <mat-card fxFlex="80">
       <mat-card-header>
-        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/IMG_20180726_201435.jpg?alt=media&token=a4e53c90-cc88-43d5-80c2-1980f5be1cb6" alt="Me">
+        <img
+        appUpload
+        (hovering)="hovering($event)"
+        mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/IMG_20180726_201435.jpg?alt=media&token=a4e53c90-cc88-43d5-80c2-1980f5be1cb6" 
+        alt="Me">
         <mat-card-title>{{user.username}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>
@@ -36,7 +40,7 @@
             <button mat-raised-button
                     color="primary"
                     type="submit"
-                    [disabled]="profileForm.invalid">
+                    [disabled]="profileForm.invalid || unchanged()">
                 Save
             </button>
           </div>
