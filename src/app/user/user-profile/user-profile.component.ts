@@ -3,19 +3,33 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../user/shared/user.service';
 import { User } from '../../user/shared/models/user';
 import { Subscription } from 'rxjs';
+import { state, trigger, style, transition, animate } from '@angular/animations';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
+  animations: [trigger('imageHovering', [
+    state('hoveringImage', style ({
+      opacity: 0.3
+    })),
+    state('notHoveringImage', style ({
+      opacity: 1
+    })),
+    transition('hoveringImage <=> notHoveringImage', animate('200ms ease-in'))
+  ])]
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
   profileForm: FormGroup;
   user: User;
   userSubscribe: Subscription;
+  isHovering: boolean;
+  img: string;
 
   constructor(private userService: UserService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private snack: MatSnackBar) {
     this.profileForm  = fb.group( {
       username: ['',[Validators.required, Validators.minLength(5)]],
       firstName: '',
@@ -40,11 +54,32 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.userSubscribe.unsubscribe();
   }
 
-  hovering(event) {
-    console.log('In profile component', event)
+  hovering(isHovering: boolean) {
+    this.isHovering = isHovering; 
   }
 
-  /* Updating user profile */
+  changePicture(event) {
+    if (event.toState === 'hoveringImage') {
+      this.img = '../../../../assets/sharp-cloud_upload-24px.svg'; //The image added in to the project
+    } else {
+      this.img = 'https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/IMG_20180726_201435.jpg?alt=media&token=a4e53c90-cc88-43d5-80c2-1980f5be1cb6';
+    } 
+    console.log('animation done, ', event);
+  }
+ 
+  //Accept drops
+  //Allowing only jpeg & png pictures
+  UploadNewImage(fileList) {
+    if (fileList && fileList.length === 1 && ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
+      console.log(fileList.item(0));
+    } else {
+      this.snack.open('You need to drop a single png or jpeg image', null, {
+        duration: 4000
+      });
+    }
+  }
+
+  //Updating user profile
   save() { 
     const model = this.profileForm.value as User; /* Getting the user info from the form */
     model.uid = this.user.uid;  /* get the unique identifier from the actual user we have locally */

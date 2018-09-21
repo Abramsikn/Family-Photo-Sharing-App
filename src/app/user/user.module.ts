@@ -9,11 +9,13 @@ import { MatFormFieldModule,
          MatButtonModule,
          MatCardModule, 
          MatSnackBarModule, 
-         MatDividerModule } from '@angular/material';
+         MatDividerModule, 
+         MatTooltipModule} from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SharedModule } from '../shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { SharedModule } from '../shared/shared.module';
     MatSnackBarModule, 
     MatDividerModule,
     AngularFirestoreModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    MatTooltipModule
   ],
   declarations: [
     UserProfileComponent

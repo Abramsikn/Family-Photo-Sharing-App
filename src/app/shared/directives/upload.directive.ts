@@ -6,30 +6,37 @@ import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 export class UploadDirective { 
 
   @Output()
-  hovering = new EventEmitter<boolean>();
+  hovering = new EventEmitter<boolean>(); /* EventEmmiter will return boolean */
+  /* 
+  Inform whoever wants to know outside 
+  the directive that now you need to do something 
+  */
  
+  @Output()
+  dropped = new EventEmitter<FileList>();
+
   constructor() { }
-  //
+  
   @HostListener('dragenter', ['$event'])
   onDragEnter(event) {
     event.preventDefault();
     this.hovering.emit(true);
   }
-  //
+  
   @HostListener('dragleave', ['$event'])
   onDragLeave(event) {
     event.preventDefault();
     this.hovering.emit(false);
   }
-  //Prevent all default actions
+  //Prevent all default actions when we drop the pic
   @HostListener('dragover', ['$event'])
   onDragOver(event) {
     event.preventDefault();
   }
-  //
+
   @HostListener('drop', ['$event'])
   onDrop(event) {
     event.preventDefault();
-    console.log('Drop event; ', event);
+    this.dropped.emit(event.dataTransfer.files); 
   }
 }

@@ -2,10 +2,16 @@
     <mat-card fxFlex="80">
       <mat-card-header>
         <img
+        matTooltipPosition = "below"
+        matTooltip="Drop new image, or click to select an image"
+        [@imageHovering]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
+        (@imageHovering.done)="changePicture($event)"
         appUpload
         (hovering)="hovering($event)"
-        mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/IMG_20180726_201435.jpg?alt=media&token=a4e53c90-cc88-43d5-80c2-1980f5be1cb6" 
-        alt="Me">
+        (dropped)="UploadNewImage($event)"
+        mat-card-avatar 
+        [src]="img"
+        alt="Profile Photo"> <!-- [src - property binding]-->
         <mat-card-title>{{user.username}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>
