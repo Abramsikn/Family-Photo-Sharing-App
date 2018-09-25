@@ -16,6 +16,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSystemModule } from '../file-system/file-system.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FileSystemModule
   ],
   declarations: [
     UserProfileComponent
