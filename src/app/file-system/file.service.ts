@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+import { AngularFireStorage } from 'angularfire2/storage';
 import { UploadTask } from './upload-task';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FileService {
@@ -10,9 +9,10 @@ export class FileService {
 
   upload(path: string, file: File): UploadTask {
     const task = this.angFStorage.upload(path, file);
-    return {
-      //downloadUrl: task.downloadURL()
-     };
+    
+    return{
+      
+    }
   }
 
   /*downloadUrlProfile(uid: string):  {
