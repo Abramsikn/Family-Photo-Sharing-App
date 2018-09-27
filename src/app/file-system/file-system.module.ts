@@ -8,7 +8,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     CommonModule,
     AngularFireStorageModule
   ],
-  declarations: [],
-  providers: [FileService]
+  declarations: [ ],
+  providers: [
+    FileService 
+  ]
 })
 export class FileSystemModule { }

@@ -7,10 +7,7 @@ export class UploadDirective {
 
   @Output()
   hovering = new EventEmitter<boolean>(); /* EventEmmiter will return boolean */
-  /* 
-  Inform whoever wants to know outside 
-  the directive that now you need to do something 
-  */
+  /* nform whoever wants to know outside he directive that now you need to do something   */
  
   @Output()
   dropped = new EventEmitter<FileList>();

@@ -35,7 +35,6 @@ export class UserService {
           })
       });
   }
-
   /* pass the user with all the information that we wanna store under the logged in user */
   /* user - specifies the uid */
   update(user: User): Promise<any> {

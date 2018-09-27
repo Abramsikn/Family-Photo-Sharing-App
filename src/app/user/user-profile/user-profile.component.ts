@@ -36,7 +36,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       username: ['',[Validators.required, Validators.minLength(5)]],
       firstName: '',
       middleName: '',
-      lastName: ''
+      lastName: '' 
     });
   }
 
@@ -64,7 +64,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     if (event.toState === 'hoveringImage') {
       this.img = '../../../../assets/sharp-cloud_upload-24px.svg'; //The image added in to the project
     } else {
-      this.img = 'https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/IMG_20180726_201435.jpg?alt=media&token=a4e53c90-cc88-43d5-80c2-1980f5be1cb6';
+      this.img = 'https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/download.png?alt=media&token=9aa6a4e2-32b7-4ea8-bb3b-37808f88b43b';
     } 
     console.log('animation done, ', event);
   }
@@ -73,13 +73,12 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   //Allowing only jpeg & png pictures
   UploadNewImage(fileList) {
     if (fileList && fileList.length === 1 && 
-       ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
+       ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) { /*Allowing 2 types of files to be uploaded*/
       //console.log(fileList.item(0));
       const file = fileList.item(0);  //
-      const path = 'profile-image/' + this.user.uid;
+      const path = 'profile-images/' + this.user.uid;
       this.fileService.upload(path, file).downloadUrl.subscribe(
         url => {
-          console.log('url', url);
           this.img = url;
         }
       );
