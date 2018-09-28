@@ -5,10 +5,15 @@ import { UploadTask } from './upload-task';
 @Injectable()
 export class FileService {
 
-  constructor(private angFStorage: AngularFireStorage)  { }
+  constructor(private angFstorage: AngularFireStorage)  { }
 
   upload(path: string, file: File): UploadTask {
-    const task = this.angFStorage.upload(path, file);
+    const task = this.angFstorage.upload(path, file);
+    const ref = this.angFstorage.ref(path);
+    const downloadUrlProfile = ref.getDownloadURL().subscribe(url => {
+      const downloadURL = url;
+      console.log(url);
+    })
     
     return{
       
