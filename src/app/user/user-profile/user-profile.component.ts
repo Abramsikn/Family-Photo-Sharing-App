@@ -74,6 +74,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   UploadNewImage(fileList) {
     if (fileList && fileList.length === 1 && 
        ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) { /*Allowing 2 types of files to be uploaded*/
+      console.log(fileList.item(0));
       const file = fileList.item(0);
       const path = 'profile-images/' + this.user.uid;
       this.fileService.upload(path, file).downloadUrl.subscribe(
