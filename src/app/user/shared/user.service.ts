@@ -6,11 +6,13 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/first';
+import { FileService } from '../../file-system/file.service';
 
 @Injectable()
 export class UserService {
   constructor(private authService: AuthService,
-              private angularFs: AngularFirestore) { }
+              private angularFs: AngularFirestore,
+              private fileService: FileService) { }
   
   /* Getting the staff from the Authenticated user */
   getUser(): Observable<User> {
@@ -30,11 +32,30 @@ export class UserService {
               authUser.firstName = dbUser.firstName;
               authUser.middleName = dbUser.middleName;
               authUser.lastName = dbUser.lastName;
+              authUser.img = dbUser.img;
             }
             return authUser;  //When everything is done I return the observable of the type user
           })
       });
   }
+
+  /* Function that will call both the user and the user URL if there's one */
+  getUserWithProfileUrl(): Observable<User> {
+    return this.getUser()
+      .switchMap(user => {
+        if (!user || !user.img) {
+          return Observable.create(obs => {
+            obs.next(user);
+          });
+        }
+        return this.fileService.downloadUrlProfile(user.uid)
+          .map(url => {
+            user.profileImgUrl = url;
+            return user; 
+          });
+      });
+  }
+
   /* pass the user with all the information that we wanna store under the logged in user */
   /* user - specifies the uid */
   update(user: User): Promise<any> {

@@ -2,16 +2,21 @@
     <mat-card fxFlex="80">
       <mat-card-header>
         <img
+        [hidden]="!srcLoaded"
         matTooltipPosition = "below"
         matTooltip="Drop new image, or click to select an image"
         [@imageHovering]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
-        (@imageHovering.done)="changePicture($event)"
         appUpload
         (hovering)="hovering($event)"
         (dropped)="UploadNewImage($event)"
         mat-card-avatar 
-        [src]="img"
-        alt="Profile Photo of the user"> <!-- [src - property binding]-->
+        [src]="isHovering ? '/assets/sharp-cloud_upload-24px.svg' : img"
+        alt="Profile Photo of the User"
+        (load)="srcLoaded = true"> <!-- [src - property binding]-->
+        <mat-spinner
+        mat-card-avatar
+        diameter="40"
+        *ngIf="!srcLoaded"></mat-spinner>
         <mat-card-title>{{user.username}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>

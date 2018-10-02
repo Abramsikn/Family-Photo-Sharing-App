@@ -27,6 +27,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   userSubscribe: Subscription;
   isHovering: boolean;
   img: string;
+  srcLoaded: boolean;
 
   constructor(private userService: UserService,
               private fileService: FileService,
@@ -42,11 +43,15 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   /* Save subscription after listening on userSubscription */
   ngOnInit() { 
-    this.userSubscribe = this.userService.getUser() /* get the authenticated user */
+    this.userSubscribe = this.userService.getUserWithProfileUrl() /* get the authenticated user */
       .subscribe( user => {
         this.user = user; /* paste the user on the local user */
+        if (this.user.img) {
+          this.img = user.profileImgUrl;
+        } else {
+          this.img = '/assets/NoProfile.svg';
+        }
         this.profileForm.patchValue(user); /* After getting the user we wanna populate the information in the profile form */
-        console.log(user)
       });
   }
 
@@ -59,33 +64,28 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   hovering(isHovering: boolean) {
     this.isHovering = isHovering; 
   }
-
-  changePicture(event) {
-    if (event.toState === 'hoveringImage') {
-      this.img = '../../../../assets/sharp-cloud_upload-24px.svg'; //The image added in to the project
-    } else {
-      this.img = 'https://firebasestorage.googleapis.com/v0/b/photosharingapp-348ad.appspot.com/o/download.png?alt=media&token=9aa6a4e2-32b7-4ea8-bb3b-37808f88b43b';
-    } 
-    console.log('animation done, ', event);
-  }
  
   //Accept drops
   //Allowing only jpeg & png pictures
   UploadNewImage(fileList) {
     if (fileList && fileList.length === 1 && 
        ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) { /*Allowing 2 types of files to be uploaded*/
-      console.log(fileList.item(0));
-      const file = fileList.item(0);
+      this.srcLoaded = false; 
+        const file = fileList.item(0);
       const path = 'profile-images/' + this.user.uid;
-      this.fileService.upload(path, file).downloadUrl.subscribe(
+      this.fileService.upload(path, file).downloadUrl.subscribe( //
         url => {
           this.img = url;
+          this.user.img = true;
+          this.save();
+          this.hovering(false);
         }
       );
     } else {
       this.snack.open('You need to drop a single png or jpeg image', null, {
         duration: 4000
       });
+      this.hovering(false);
     }
   }
 
@@ -93,6 +93,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   save() { 
     const model = this.profileForm.value as User; /* Getting the user info from the form */
     model.uid = this.user.uid;  /* get the unique identifier from the actual user we have locally */
+    model.img = this.user.img;
     this.userService.update(model)
       .then( () => console.log('saved')) /* => error notation */
       .catch( err => console.log('error', err));

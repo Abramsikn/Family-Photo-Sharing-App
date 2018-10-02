@@ -46,7 +46,7 @@ export class AuthService {
         if(!authState) { //Avoiding having null reference exception
           return null;
         }
-        return {email: authState.email, uid: authState.uid };
+        return {email: authState.email, uid: authState.uid};
       });
   }
 }

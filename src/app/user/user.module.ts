@@ -10,13 +10,15 @@ import { MatFormFieldModule,
          MatCardModule, 
          MatSnackBarModule, 
          MatDividerModule, 
-         MatTooltipModule} from '@angular/material';
+         MatTooltipModule,
+         MatProgressSpinnerModule} from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSystemModule } from '../file-system/file-system.module';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   imports: [
@@ -32,10 +34,12 @@ import { FileSystemModule } from '../file-system/file-system.module';
     MatSnackBarModule, 
     MatDividerModule,
     AngularFirestoreModule,
+    AngularFireStorageModule, //
     SharedModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    FileSystemModule
+    FileSystemModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     UserProfileComponent
