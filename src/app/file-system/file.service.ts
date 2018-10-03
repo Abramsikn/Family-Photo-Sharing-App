@@ -25,7 +25,7 @@ export class FileService {
     };
   }
 
-    downloadUrlProfile (uid: string): Observable<any> {
-      return this.angFstorage.ref('profile-images/' + uid).getDownloadURL();
-    }
+  downloadUrlProfile (uid: string): Observable<any> {
+    return this.angFstorage.ref('profile-images/' + uid).getDownloadURL();
+  }
 }

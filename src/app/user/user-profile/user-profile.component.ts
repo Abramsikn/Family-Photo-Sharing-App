@@ -70,11 +70,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   UploadNewImage(fileList) {
     if (fileList && fileList.length === 1 && 
        ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) { /*Allowing 2 types of files to be uploaded*/
-      this.srcLoaded = false; 
-        const file = fileList.item(0);
+      //this.srcLoaded = false; 
+      const file = fileList.item(0);
       const path = 'profile-images/' + this.user.uid;
-      this.fileService.upload(path, file).downloadUrl.subscribe( //
-        url => {
+      this.fileService.upload(path, file).downloadUrl.subscribe(
+        (url) => {
           this.img = url;
           this.user.img = true;
           this.save();
@@ -89,14 +89,26 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  //Updating user profile
+  //Adding info on a user OR updating user profile
   save() { 
     const model = this.profileForm.value as User; /* Getting the user info from the form */
     model.uid = this.user.uid;  /* get the unique identifier from the actual user we have locally */
     model.img = this.user.img;
     this.userService.update(model)
-      .then( () => console.log('saved')) /* => error notation */
-      .catch( err => console.log('error', err));
+      .then( () => {
+        this.snack.open('User successfully saved', null, {
+          duration: 2000,
+          verticalPosition: 'top',
+          panelClass: ['snack-color-succes']
+        });
+      }) /* => error notation */
+      .catch( err => {
+        this.snack.open('Something went while ttrying to save user details', null, {
+          duration: 4000,
+          verticalPosition: 'top',
+          panelClass: ['snack-color-failure']
+        });
+      });
   }
   
   unchanged(): boolean {  
