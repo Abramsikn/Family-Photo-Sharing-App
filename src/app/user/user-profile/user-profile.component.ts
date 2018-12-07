@@ -5,7 +5,7 @@ import { User } from '../../user/shared/models/user';
 import { Subscription } from 'rxjs';
 import { state, trigger, style, transition, animate } from '@angular/animations';
 import { MatSnackBar } from '@angular/material';
-import { FileService } from '../../file-system/file.service';
+import { FileService } from '../../shared/files/file.service';
 
 @Component({
   selector: 'app-user-profile',

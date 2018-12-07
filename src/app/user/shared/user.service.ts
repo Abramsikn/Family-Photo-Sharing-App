@@ -6,7 +6,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/first';
-import { FileService } from '../../file-system/file.service';
+import { FileService } from '../../shared/files/file.service';
 
 @Injectable()
 export class UserService {

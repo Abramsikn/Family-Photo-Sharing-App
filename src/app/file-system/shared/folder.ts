@@ -1,12 +1,12 @@
 export class Folder {
     name: string;
-    owner: string;
-    file: [{                /* Array */
+    owner?: string;
+    files?: [{                /* Array */
         displayName: string;
         uid: string;
     }];
-    subFolders: [{          /* Array */
+    subFolders?: [{          /* Array */
         name: string;
         uid: string;
     }];
-}
+} 
